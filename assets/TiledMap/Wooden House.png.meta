@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "91896b64-bb1b-482c-8a60-02a96f71be20",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 112,
+  "height": 80,
+  "platformSettings": {},
+  "subMetas": {
+    "Wooden House": {
+      "ver": "1.0.6",
+      "uuid": "9179283b-93e7-46c3-bb8d-ae9fe209a1d7",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "91896b64-bb1b-482c-8a60-02a96f71be20",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -4,
+      "offsetY": 3.5,
+      "trimX": 3,
+      "trimY": 0,
+      "width": 98,
+      "height": 73,
+      "rawWidth": 112,
+      "rawHeight": 80,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

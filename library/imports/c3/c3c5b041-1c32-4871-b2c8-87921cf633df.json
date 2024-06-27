@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Free Chicken Sprites",
+    "texture": "7ba47d66-0ff6-48ea-b011-b5a3f4b97f56",
+    "atlas": "",
+    "rect": [
+      0,
+      3,
+      60,
+      28
+    ],
+    "offset": [
+      -2,
+      -1
+    ],
+    "originalSize": [
+      64,
+      32
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

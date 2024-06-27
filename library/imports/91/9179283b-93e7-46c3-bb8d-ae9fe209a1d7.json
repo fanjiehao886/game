@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Wooden House",
+    "texture": "91896b64-bb1b-482c-8a60-02a96f71be20",
+    "atlas": "",
+    "rect": [
+      3,
+      0,
+      98,
+      73
+    ],
+    "offset": [
+      -4,
+      3.5
+    ],
+    "originalSize": [
+      112,
+      80
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
