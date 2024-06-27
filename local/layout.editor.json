@@ -104,7 +104,8 @@
         "cocos-services"
       ]
     },
-    " load-media-worker": {}
+    "window-1719481253755": {},
+    " build-worker-worker": {}
   },
   "panels": {
     "builder": {

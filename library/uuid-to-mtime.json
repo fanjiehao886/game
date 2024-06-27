@@ -525,8 +525,8 @@
     "relativePath": "TiledMap/water.tsx"
   },
   "1063577e-0849-4686-b338-860475556d4f": {
-    "asset": 1719468545364,
-    "meta": 1719468545369,
+    "asset": 1719481249504,
+    "meta": 1719481249508,
     "relativePath": "scenes/scene.fire"
   },
   "bbcc4125-3f82-49d7-8567-99707c5ffa0f": {
@@ -669,11 +669,6 @@
     "meta": 1719387683653,
     "relativePath": "player/2.png"
   },
-  "cb54db1f-1788-4f1d-bb2d-1bb16bf705d5": {
-    "asset": 1719388293166,
-    "meta": 1719388299062,
-    "relativePath": "scripts/Player.js"
-  },
   "c407ee8e-d6a1-4eea-9b9f-772d1e852350": {
     "asset": 1719467749927,
     "meta": 1719467749928,
@@ -688,5 +683,75 @@
     "asset": 1719468477835,
     "meta": 1719468482500,
     "relativePath": "audios/bg.mp3"
+  },
+  "3ef67a7a-1e20-4e9f-969b-e3c9722bb2fa": {
+    "asset": 1719478190109,
+    "meta": 1719478190110,
+    "relativePath": "fabres"
+  },
+  "1f45dcf5-ef3b-43ec-8c57-1104bb1ab437": {
+    "asset": 1719478261522,
+    "meta": 1719478268934,
+    "relativePath": "scripts/bullets.js"
+  },
+  "29f08404-470d-4e40-9d33-85dcab9c3830": {
+    "asset": 1719480306754,
+    "meta": 1719480306755,
+    "relativePath": "fabres/bullets.prefab"
+  },
+  "cb54db1f-1788-4f1d-bb2d-1bb16bf705d5": {
+    "asset": 1719480581824,
+    "meta": 1719480583892,
+    "relativePath": "scripts/Player.js"
+  },
+  "82bc352f-7708-4386-9b43-06dae9e8b402": {
+    "asset": 1719480757695,
+    "meta": 1719480757696,
+    "relativePath": "monster"
+  },
+  "85b6c737-b701-46a3-b696-1d7f4f24a20e": {
+    "asset": 1719480769104,
+    "meta": 1719480769185,
+    "relativePath": "monster/2.png"
+  },
+  "968331ef-7766-447a-b74f-e68044745db1": {
+    "asset": 1719480769104,
+    "meta": 1719480769187,
+    "relativePath": "monster/4.png"
+  },
+  "a4d1a847-a67d-496a-a583-2d29b4a86119": {
+    "asset": 1719480769104,
+    "meta": 1719480769188,
+    "relativePath": "monster/3.png"
+  },
+  "12d14aa5-5619-485b-a120-46cb09d15acc": {
+    "asset": 1719480769104,
+    "meta": 1719480769189,
+    "relativePath": "monster/1.png"
+  },
+  "c708a302-0ca4-443f-a874-17d349381d1f": {
+    "asset": 1719480769104,
+    "meta": 1719480769198,
+    "relativePath": "monster/5.png"
+  },
+  "8dbe805b-b2da-4150-a6ed-3322268bc3f7": {
+    "asset": 1719480769104,
+    "meta": 1719480769200,
+    "relativePath": "monster/7.png"
+  },
+  "d57ec046-5d4d-45f1-a1ec-5f35609fca7b": {
+    "asset": 1719480769104,
+    "meta": 1719480769201,
+    "relativePath": "monster/6.png"
+  },
+  "db254f02-72e1-4ccf-8caf-fa40673603b2": {
+    "asset": 1719480769104,
+    "meta": 1719480769202,
+    "relativePath": "monster/8.png"
+  },
+  "1ef37d1b-4716-4dc6-ba7c-4878e9722190": {
+    "asset": 1719481093204,
+    "meta": 1719481093232,
+    "relativePath": "animations/monster.anim"
   }
 }

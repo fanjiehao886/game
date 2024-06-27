@@ -49,7 +49,15 @@ cc.Class({
             default: null,
             type: cc.AudioClip,
             tooltip: '背景音乐'
-        }
+        },
+        bulletPre: {
+            default: null,
+            type: cc.Prefab,
+        },
+        shootInterval: {
+            default: 0.5,
+            type: cc.Float,
+        },
 
     },
 
@@ -61,6 +69,14 @@ cc.Class({
 
     start() {
         this.currentAudio = cc.audioEngine.play(this.audio_bg, true, 1);
+        this.schedule(()=>{this.shoot()}, this.shootInterval);
+    },
+
+    shoot() {
+        let bullet = cc.instantiate(this.bulletPre);
+        bullet.x = 240 + this.node.x + this.node.width/2;
+        bullet.y = 480 + this.node.y;
+        bullet.setParent(cc.director.getScene());
     },
 
 

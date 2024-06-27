@@ -55,6 +55,14 @@ cc.Class({
       "default": null,
       type: cc.AudioClip,
       tooltip: '背景音乐'
+    },
+    bulletPre: {
+      "default": null,
+      type: cc.Prefab
+    },
+    shootInterval: {
+      "default": 0.5,
+      type: cc.Float
     }
   },
   onLoad: function onLoad() {
@@ -65,7 +73,18 @@ cc.Class({
     _JoystickEvent["default"].getInstance().on(_JoystickEnum["default"].JoystickEventType.TOUCH_END, this.onTouchEnd, this);
   },
   start: function start() {
+    var _this = this;
+
     this.currentAudio = cc.audioEngine.play(this.audio_bg, true, 1);
+    this.schedule(function () {
+      _this.shoot();
+    }, this.shootInterval);
+  },
+  shoot: function shoot() {
+    var bullet = cc.instantiate(this.bulletPre);
+    bullet.x = 240 + this.node.x + this.node.width / 2;
+    bullet.y = 480 + this.node.y;
+    bullet.setParent(cc.director.getScene());
   },
   onEndContact: function onEndContact(contact, selfCollider, otherCollider) {
     //play sound effect
