@@ -10,6 +10,7 @@ cc._RF.push(module, '1f45dz17ztD7IxXEQS7GrQ3', 'bullets');
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
+
 cc.Class({
   "extends": cc.Component,
   srcHeight: Number,
@@ -28,7 +29,6 @@ cc.Class({
   start: function start() {},
   update: function update(dt) {
     this.node.x += this.speed * dt;
-
     if (this.node.x > this.srcWidth) {
       this.node.removeFromParent(true);
     }

@@ -3,5 +3,5 @@
   "_name": "house",
   "_objFlags": 0,
   "_native": "",
-  "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<tileset version=\"1.2\" tiledversion=\"1.2.0\" name=\"house\" tilewidth=\"16\" tileheight=\"16\" tilecount=\"35\" columns=\"7\">\n <image source=\"Wooden House.png\" width=\"112\" height=\"80\"/>\n</tileset>\n"
+  "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<tileset version=\"1.2\" tiledversion=\"1.2.0\" name=\"house\" tilewidth=\"16\" tileheight=\"16\" tilecount=\"35\" columns=\"7\">\r\n <image source=\"Wooden House.png\" width=\"112\" height=\"80\"/>\r\n</tileset>\r\n"
 }

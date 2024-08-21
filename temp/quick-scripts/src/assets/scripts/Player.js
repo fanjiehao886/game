@@ -5,11 +5,8 @@ cc._RF.push(module, 'cb54dsfF4hPHbstG7Fr9wXV', 'Player');
 "use strict";
 
 var _JoystickEnum = _interopRequireDefault(require("JoystickEnum"));
-
 var _JoystickEvent = _interopRequireDefault(require("JoystickEvent"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -67,14 +64,11 @@ cc.Class({
   },
   onLoad: function onLoad() {
     _JoystickEvent["default"].getInstance().on(_JoystickEnum["default"].JoystickEventType.TOUCH_START, this.onTouchStart, this);
-
     _JoystickEvent["default"].getInstance().on(_JoystickEnum["default"].JoystickEventType.TOUCH_MOVE, this.onTouchMove, this);
-
     _JoystickEvent["default"].getInstance().on(_JoystickEnum["default"].JoystickEventType.TOUCH_END, this.onTouchEnd, this);
   },
   start: function start() {
     var _this = this;
-
     this.currentAudio = cc.audioEngine.play(this.audio_bg, true, 1);
     this.schedule(function () {
       _this.shoot();
@@ -105,8 +99,8 @@ cc.Class({
     // ) - 90;
     //let newPos = this.node.position.add(this.moveDir.mul(this._moveSpeed / 120));
     //this.node.setPosition(newPos);
-    var lv = this.node.getComponent(cc.RigidBody).linearVelocity; //console.log(this._moveSpeed);
-
+    var lv = this.node.getComponent(cc.RigidBody).linearVelocity;
+    //console.log(this._moveSpeed);
     lv.x = this.moveDir.x * this._moveSpeed / 2;
     lv.y = this.moveDir.y * this._moveSpeed / 2;
     this.node.getComponent(cc.RigidBody).linearVelocity = lv;
@@ -116,19 +110,15 @@ cc.Class({
       case _JoystickEnum["default"].SpeedType.STOP:
         this._moveSpeed = this.stopSpeed;
         break;
-
       case _JoystickEnum["default"].SpeedType.NORMAL:
         this._moveSpeed = this.normalSpeed;
         break;
-
       case _JoystickEnum["default"].SpeedType.FAST:
         this._moveSpeed = this.fastSpeed;
         break;
-
       default:
         break;
     }
-
     this.move();
   }
 });

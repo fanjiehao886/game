@@ -19,7 +19,6 @@ var JoystickEvent = cc.Class({
   off: function off(eventType, callFunc, target) {
     this._event.off(eventType, callFunc, target);
   },
-
   /**
    *
    * @param eventType JoystickEnum.JoystickEventType
@@ -27,21 +26,17 @@ var JoystickEvent = cc.Class({
    */
   emit: function emit(eventType) {
     var _this$_event;
-
     for (var _len = arguments.length, arg = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       arg[_key - 1] = arguments[_key];
     }
-
     (_this$_event = this._event).emit.apply(_this$_event, [eventType].concat(arg));
   }
 });
 var _instance = null;
-
 JoystickEvent.getInstance = function () {
   !_instance && (_instance = new JoystickEvent());
   return _instance;
 };
-
 var _default = JoystickEvent;
 exports["default"] = _default;
 module.exports = exports["default"];
