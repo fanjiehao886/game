@@ -55,30 +55,65 @@ cc.Class({
             type: cc.Prefab,
         },
         shootInterval: {
-            default: 0.5,
+            default: 0.05,
+            type: cc.Float,
+        },
+        lastFiretime: {
+            default: 0,
             type: cc.Float,
         },
 
     },
 
     onLoad() {
+        // 添加刚体组件
+        let rigidBody = this.getComponent(cc.RigidBody);
+        if (!rigidBody) {
+            rigidBody = this.addComponent(cc.RigidBody);
+            rigidBody.type = cc.RigidBodyType.Dynamic;
+            rigidBody.fixedRotation = true;
+            rigidBody.enabledContactListener = true;
+        }
+
+        // 添加碰撞组件
+        let collider = this.getComponent(cc.BoxCollider);
+        if (!collider) {
+            collider = this.addComponent(cc.BoxCollider);
+            collider.size = cc.size(this.node.width, this.node.height);
+            if (this.node.width === 0 || this.node.height === 0) {
+                collider.size = cc.size(40, 40); // 设置默认尺寸
+            }
+        }
+
+        // 设置碰撞分组
+        this.node.group = 'player';
+
         JoystickEvent.getInstance().on(JoystickEnum.JoystickEventType.TOUCH_START, this.onTouchStart, this);
         JoystickEvent.getInstance().on(JoystickEnum.JoystickEventType.TOUCH_MOVE, this.onTouchMove, this);
         JoystickEvent.getInstance().on(JoystickEnum.JoystickEventType.TOUCH_END, this.onTouchEnd, this);
     },
 
     start() {
-        this.currentAudio = cc.audioEngine.play(this.audio_bg, true, 1);
-        this.schedule(()=>{this.shoot()}, this.shootInterval);
+        cc.audioEngine.playMusic(this.audio_bg, true);
     },
 
-    shoot() {
-        let bullet = cc.instantiate(this.bulletPre);
-        bullet.x = 240 + this.node.x + this.node.width/2;
-        bullet.y = 480 + this.node.y;
-        bullet.setParent(cc.director.getScene());
-    },
+    shoot(monster) {
+        const currentTime = cc.director.getTotalTime() / 1000;
+        if (currentTime - this.lastFiretime > this.shootInterval) {
+            this.lastFiretime = currentTime;
+            let bullet = cc.instantiate(this.bulletPre);
+            bullet.setPosition(this.node.position);
+            this.node.parent.addChild(bullet);
 
+            let monsterPos = monster.position;
+            let dir = monsterPos.sub(bullet.position).normalize();
+            
+            let bulletComp = bullet.getComponent('bullets');
+            bulletComp.setDirection(dir);
+            bulletComp.setSpeed(200);
+            bulletComp.setDamage(10);
+        }
+    },
 
     onEndContact: function (contact, selfCollider, otherCollider) {
         //play sound effect
@@ -97,6 +132,9 @@ cc.Class({
     onTouchEnd(event, data) {
         this._speedType = data.speedType;
     },
+    onTouchEnemy(monster, dt) {
+        this.shoot(monster);
+    },
 
     // methods
     move() {
@@ -110,6 +148,22 @@ cc.Class({
         lv.x  = this.moveDir.x * this._moveSpeed / 2;
         lv.y  = this.moveDir.y * this._moveSpeed / 2;
         this.node.getComponent(cc.RigidBody).linearVelocity = lv;
+    },
+    detectEnemy(dt) {
+        let enemy = this.node.parent.getChildByName('enemy');
+        let monster = enemy.getChildByName('monster');
+        if (monster) {
+            let monsterPos = monster.position;
+            let playerPos = this.node.position;
+            let distance = monsterPos.sub(playerPos).mag();
+            if (distance < 200) {
+                console.log("touch monster");
+                this.onTouchEnemy(monster, dt);
+            }
+        }
+        else {
+            console.log("no monster");
+        }
     },
 
     update(dt) {
@@ -127,5 +181,26 @@ cc.Class({
                 break;
         }
         this.move();
+        this.detectEnemy(dt);
+    },
+
+    takeDamage(damage) {
+        cc.log('玩家受到伤害:', damage);
+        // 处理玩家受伤逻辑
+    },
+
+    // 添加碰撞回调
+    onCollisionEnter(other, self) {
+        cc.log('Player 碰撞开始 - 碰撞对象:', other.node.group);
+        if (other.node.group === 'bomb') {
+            cc.log('Player 被炸弹击中');
+        }
+    },
+
+    onBeginContact(contact, selfCollider, otherCollider) {
+        cc.log('Player 接触开始 - 接触对象:', otherCollider.node.group);
+        if (otherCollider.node.group === 'bomb') {
+            cc.log('Player 被炸弹击中');
+        }
     },
 });

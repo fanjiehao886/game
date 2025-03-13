@@ -114,7 +114,7 @@ cc.Class({
         const posX = this._stickPos.x + touchPos.x;
         const posY = this._stickPos.y + touchPos.y;
 
-        // 归一化
+        // 用摇杆的位置减去中心点的位置，得到的向量就是摇杆的方向
         const p = cc.v2(posX, posY).sub(this.ring.getPosition()).normalize();
 
         let speedType;

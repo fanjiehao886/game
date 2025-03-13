@@ -1,10 +1,14 @@
 {
-  "last-module-event-record-time": 1719481266700,
+  "last-module-event-record-time": 1741769071613,
   "group-list": [
     "game",
     "UI",
     "wall",
-    "player"
+    "player",
+    "monster",
+    "bullet",
+    "bomb",
+    "explosion"
   ],
   "collision-matrix": [
     [
@@ -18,12 +22,54 @@
       false,
       false,
       false,
+      true,
+      true,
+      null,
       true
     ],
     [
       false,
       false,
       true,
+      false,
+      true,
+      null,
+      true,
+      true
+    ],
+    [
+      false,
+      false,
+      true,
+      true,
+      false,
+      true
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    [
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
       false
     ]
   ],

@@ -10,9 +10,12 @@
                     };
                     function __define (exports, require, module) {
                         if (!nodeEnv) {__quick_compile_project__.registerModule(__filename, module);}
+require('./assets/scripts/Bomb');
+require('./assets/scripts/ExplosionEffect');
 require('./assets/scripts/Joystick');
 require('./assets/scripts/JoystickEnum');
 require('./assets/scripts/JoystickEvent');
+require('./assets/scripts/Monster');
 require('./assets/scripts/Player');
 require('./assets/scripts/bullets');
 require('./assets/scripts/button');

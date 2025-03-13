@@ -1,7 +1,10 @@
 
+require('./assets/scripts/Bomb');
+require('./assets/scripts/ExplosionEffect');
 require('./assets/scripts/Joystick');
 require('./assets/scripts/JoystickEnum');
 require('./assets/scripts/JoystickEvent');
+require('./assets/scripts/Monster');
 require('./assets/scripts/Player');
 require('./assets/scripts/bullets');
 require('./assets/scripts/button');

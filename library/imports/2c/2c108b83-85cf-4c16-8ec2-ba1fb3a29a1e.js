@@ -10,7 +10,6 @@ cc._RF.push(module, '2c108uDhc9MFo7Cuh+zopoe', 'game');
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
-
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -24,8 +23,10 @@ cc.Class({
     p.gravity = cc.v2(0, 0);
     document.addEventListener('WeixinJSBridgeReady', function () {
       var _this = this;
+
       cc.resources.load('audios/rock', cc.AudioClip, function (err, audioClip) {
         var audioSource = _this.addComponent(cc.AudioSource);
+
         audioSource.clip = audioClip;
         audioSource.play();
       });
@@ -35,9 +36,11 @@ cc.Class({
     var tiledSize = this.tiledMap.getTileSize();
     var layer = this.tiledMap.getLayer('fences');
     var layerSize = layer.getLayerSize();
+
     for (var i = 0; i < layerSize.width; i++) {
       for (var j = 0; j < layerSize.height; j++) {
         var tiled = layer.getTiledTileAt(i, j, true);
+
         if (tiled.gid != 0) {
           tiled.node.group = 'wall';
           var body = tiled.node.addComponent(cc.RigidBody);
@@ -50,6 +53,7 @@ cc.Class({
       }
     }
   } // update (dt) {},
+
 });
 
 cc._RF.pop();
