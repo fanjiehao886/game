@@ -7,6 +7,11 @@ cc.Class({
             type: cc.Integer,
             tooltip: '怪物最大生命值'
         },
+        collectAudio: {
+            default: null,
+            type: cc.AudioClip,
+            tooltip: '收集星星的音效'
+        },
         currentHealth: {
             default: 100,
             type: cc.Integer,
@@ -31,6 +36,11 @@ cc.Class({
             default: null,
             type: cc.Prefab,
             tooltip: '炸弹预制体'
+        },
+        starPrefab: {
+            default: null,
+            type: cc.Prefab,
+            tooltip: '星星预制体'
         },
         detectionRadius: {
             default: 300,
@@ -181,6 +191,76 @@ cc.Class({
         } else {
             this.node.destroy();
         }
+        // 生成星星
+        this.spawnStars(3);
+    },
+
+    spawnStars(count) {
+        if (!this.starPrefab) {
+            cc.error('星星预制体未设置!');
+            return;
+        }
+
+        const canvasNode = cc.find('Canvas');
+        const worldPos = this.node.convertToWorldSpaceAR(cc.Vec2.ZERO);
+        const gameManager = canvasNode.getComponent('GameManager');
+        
+        for (let i = 0; i < count; i++) {
+            let star = cc.instantiate(this.starPrefab);
+            star.parent = canvasNode;
+            star.zIndex = 999;
+            const localPos = canvasNode.convertToNodeSpaceAR(worldPos);
+            
+            // 随机位置偏移
+            const offsetX = (Math.random() - 0.5) * 100;
+            const offsetY = (Math.random() - 0.5) * 100;
+            star.setPosition(localPos.x + offsetX, localPos.y + offsetY);
+            
+            // 添加点击组件
+            let button = star.addComponent(cc.Button);
+            
+            // 添加碰撞组件以便于点击
+            let collider = star.addComponent(cc.BoxCollider);
+            collider.size = star.getContentSize();
+            
+            // 添加点击事件
+            const self = this; // 保存Monster实例的引用
+            button.node.on('click', () => {
+                // 禁用按钮防止多次点击
+                button.interactable = false;
+                
+                // 获取场景中的star node位置
+                const starNode = cc.find('Canvas/game/starCollect/star');
+                if (!starNode) {
+                    cc.error('找不到star node！');
+                    return;
+                }
+                const worldTargetPos = starNode.getPosition();
+                
+                // 加载并播放收集音效
+                cc.resources.load('audios/collect', cc.AudioClip, (err, audioClip) => {
+                    if (err) {
+                        cc.error('加载收集音效失败:', err);
+                        return;
+                    }
+                    cc.audioEngine.playEffect(audioClip, false, 3.0);
+                });
+                
+                // 创建飞向目标的动作
+                const moveAction = cc.sequence(
+                    cc.moveTo(0.5, worldTargetPos).easing(cc.easeBackIn()),
+                    cc.callFunc(() => {
+                        // 通知GameManager增加星星数量
+                        if (gameManager) {
+                            gameManager.addStar();
+                        }
+                        star.destroy();
+                    })
+                );
+                
+                star.runAction(moveAction);
+            });
+        }
     },
 
     update(dt) {
@@ -278,4 +358,4 @@ cc.Class({
             bomb.destroy();
         }
     }
-}); 
+});

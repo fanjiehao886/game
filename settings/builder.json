@@ -2,7 +2,9 @@
   "title": "Game",
   "packageName": "org.cocos2d.demo",
   "startScene": "1063577e-0849-4686-b338-860475556d4f",
-  "excludeScenes": [],
+  "excludeScenes": [
+    "f35770eb-094a-4a56-8bc6-603f29abc047"
+  ],
   "orientation": {
     "landscapeRight": true,
     "landscapeLeft": true,

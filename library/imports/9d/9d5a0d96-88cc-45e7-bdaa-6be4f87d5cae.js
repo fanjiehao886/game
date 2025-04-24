@@ -12,6 +12,11 @@ cc.Class({
       type: cc.Integer,
       tooltip: '怪物最大生命值'
     },
+    collectAudio: {
+      "default": null,
+      type: cc.AudioClip,
+      tooltip: '收集星星的音效'
+    },
     currentHealth: {
       "default": 100,
       type: cc.Integer,
@@ -36,6 +41,11 @@ cc.Class({
       "default": null,
       type: cc.Prefab,
       tooltip: '炸弹预制体'
+    },
+    starPrefab: {
+      "default": null,
+      type: cc.Prefab,
+      tooltip: '星星预制体'
     },
     detectionRadius: {
       "default": 300,
@@ -174,6 +184,76 @@ cc.Class({
       });
     } else {
       this.node.destroy();
+    } // 生成星星
+
+
+    this.spawnStars(3);
+  },
+  spawnStars: function spawnStars(count) {
+    var _this2 = this;
+
+    if (!this.starPrefab) {
+      cc.error('星星预制体未设置!');
+      return;
+    }
+
+    var canvasNode = cc.find('Canvas');
+    var worldPos = this.node.convertToWorldSpaceAR(cc.Vec2.ZERO);
+    var gameManager = canvasNode.getComponent('GameManager');
+
+    var _loop = function _loop(i) {
+      var star = cc.instantiate(_this2.starPrefab);
+      star.parent = canvasNode;
+      star.zIndex = 999;
+      var localPos = canvasNode.convertToNodeSpaceAR(worldPos); // 随机位置偏移
+
+      var offsetX = (Math.random() - 0.5) * 100;
+      var offsetY = (Math.random() - 0.5) * 100;
+      star.setPosition(localPos.x + offsetX, localPos.y + offsetY); // 添加点击组件
+
+      var button = star.addComponent(cc.Button); // 添加碰撞组件以便于点击
+
+      var collider = star.addComponent(cc.BoxCollider);
+      collider.size = star.getContentSize(); // 添加点击事件
+
+      var self = _this2; // 保存Monster实例的引用
+
+      button.node.on('click', function () {
+        // 禁用按钮防止多次点击
+        button.interactable = false; // 获取场景中的star node位置
+
+        var starNode = cc.find('Canvas/game/starCollect/star');
+
+        if (!starNode) {
+          cc.error('找不到star node！');
+          return;
+        }
+
+        var worldTargetPos = starNode.getPosition(); // 加载并播放收集音效
+
+        cc.resources.load('audios/collect', cc.AudioClip, function (err, audioClip) {
+          if (err) {
+            cc.error('加载收集音效失败:', err);
+            return;
+          }
+
+          cc.audioEngine.playEffect(audioClip, false, 3.0);
+        }); // 创建飞向目标的动作
+
+        var moveAction = cc.sequence(cc.moveTo(0.5, worldTargetPos).easing(cc.easeBackIn()), cc.callFunc(function () {
+          // 通知GameManager增加星星数量
+          if (gameManager) {
+            gameManager.addStar();
+          }
+
+          star.destroy();
+        }));
+        star.runAction(moveAction);
+      });
+    };
+
+    for (var i = 0; i < count; i++) {
+      _loop(i);
     }
   },
   update: function update(dt) {
