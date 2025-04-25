@@ -530,8 +530,8 @@
     "relativePath": "player.png"
   },
   "1c900bb7-ee59-4fa7-b871-998f6a0744e4": {
-    "asset": 1745476937688,
-    "meta": 1745476937739,
+    "asset": 1745480562120,
+    "meta": 1745549450787,
     "relativePath": "scripts"
   },
   "2afce34c-e15e-47b2-8275-09abae0f8558": {
@@ -590,8 +590,8 @@
     "relativePath": "audios/jump.wav"
   },
   "ba4ae5af-9a4e-4bae-95fe-33465a2a3fb4": {
-    "asset": 1745295623711,
-    "meta": 1745476937736,
+    "asset": 1745479948839,
+    "meta": 1745549450783,
     "relativePath": "audios"
   },
   "d0805633-1e59-4d06-bd31-5bc208450b16": {
@@ -650,8 +650,8 @@
     "relativePath": "audios/bg.mp3"
   },
   "3ef67a7a-1e20-4e9f-969b-e3c9722bb2fa": {
-    "asset": 1745390761649,
-    "meta": 1745476937736,
+    "asset": 1745477665506,
+    "meta": 1745549450784,
     "relativePath": "fabres"
   },
   "82bc352f-7708-4386-9b43-06dae9e8b402": {
@@ -705,8 +705,8 @@
     "relativePath": "animations/monster.anim"
   },
   "4bcfdcf8-36b9-46bb-a149-b5e77c7a7054": {
-    "asset": 1745390761649,
-    "meta": 1745476937738,
+    "asset": 1745479932370,
+    "meta": 1745549450786,
     "relativePath": "resources"
   },
   "202feab5-d656-49ab-a73f-6821f71cf96b": {
@@ -715,8 +715,8 @@
     "relativePath": "scripts/button.js"
   },
   "1063577e-0849-4686-b338-860475556d4f": {
-    "asset": 1745479995005,
-    "meta": 1745479995008,
+    "asset": 1745550208150,
+    "meta": 1745550208156,
     "relativePath": "scenes/scene.fire"
   },
   "54df97a7-e5ad-4016-af7d-5e4148135f62": {
@@ -738,11 +738,6 @@
     "asset": 1740621558816,
     "meta": 1740621558827,
     "relativePath": "bullets/02.png"
-  },
-  "1f45dcf5-ef3b-43ec-8c57-1104bb1ab437": {
-    "asset": 1740622520814,
-    "meta": 1740622541578,
-    "relativePath": "scripts/bullets.js"
   },
   "f943b730-139c-4f3f-a435-e980db5cf1fa": {
     "asset": 1740622566361,
@@ -794,11 +789,6 @@
     "meta": 1741768736289,
     "relativePath": "fabres/bomb.prefab"
   },
-  "2c657e7e-99a8-44b8-9783-8d80e048b04e": {
-    "asset": 1741768923527,
-    "meta": 1741768924587,
-    "relativePath": "scripts/ExplosionEffect.js"
-  },
   "410c0eef-3236-4914-be97-f151efedddd5": {
     "asset": 1745289324415,
     "meta": 1745476937740,
@@ -839,14 +829,24 @@
     "meta": 1745478262669,
     "relativePath": "scripts/GameManager.js"
   },
-  "9d5a0d96-88cc-45e7-bdaa-6be4f87d5cae": {
-    "asset": 1745479889750,
-    "meta": 1745479919470,
-    "relativePath": "scripts/Monster.js"
-  },
   "72d0e59b-f4a8-40f0-8ffa-1e0ffd5558d0": {
-    "asset": 1745479927372,
-    "meta": 1745479927373,
+    "asset": 1745479957645,
+    "meta": 1745549450788,
     "relativePath": "resources/audios"
+  },
+  "1f45dcf5-ef3b-43ec-8c57-1104bb1ab437": {
+    "asset": 1745549605529,
+    "meta": 1745549679148,
+    "relativePath": "scripts/bullets.js"
+  },
+  "2c657e7e-99a8-44b8-9783-8d80e048b04e": {
+    "asset": 1745550313127,
+    "meta": 1745550781569,
+    "relativePath": "scripts/ExplosionEffect.js"
+  },
+  "9d5a0d96-88cc-45e7-bdaa-6be4f87d5cae": {
+    "asset": 1745551978209,
+    "meta": 1745552017068,
+    "relativePath": "scripts/Monster.js"
   }
 }

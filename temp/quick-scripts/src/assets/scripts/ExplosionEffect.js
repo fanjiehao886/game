@@ -19,6 +19,8 @@ cc.Class({
     }
   },
   onLoad: function onLoad() {
+    var _this = this;
+
     // 添加碰撞组件
     var collider = this.getComponent(cc.BoxCollider);
 
@@ -28,11 +30,17 @@ cc.Class({
     } // 设置碰撞分组
 
 
-    this.node.group = 'explosion';
+    this.node.group = 'explosion'; // 在duration时间后自动销毁爆炸效果
+
+    this.scheduleOnce(function () {
+      if (_this.node && _this.node.isValid) {
+        cc.log('爆炸效果到达持续时间，自动销毁');
+
+        _this.node.destroy();
+      }
+    }, this.duration);
   },
   onCollisionEnter: function onCollisionEnter(other, self) {
-    var _this = this;
-
     cc.log('爆炸效果碰撞 - 碰撞对象:', other.node.group);
 
     if (other.node.group === 'player') {
@@ -42,16 +50,7 @@ cc.Class({
       if (player && player.takeDamage) {
         player.takeDamage(this.damage);
         cc.log('爆炸效果对玩家造成伤害:', this.damage);
-      } // 0.5秒后销毁爆炸效果
-
-
-      this.scheduleOnce(function () {
-        if (_this.node && _this.node.isValid) {
-          cc.log('爆炸效果即将销毁');
-
-          _this.node.destroy();
-        }
-      }, 0.5);
+      }
     }
   },
   onDestroy: function onDestroy() {

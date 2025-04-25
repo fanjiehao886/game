@@ -19,6 +19,11 @@ cc.Class({
             type: cc.Integer,
             tooltip: '子弹伤害值'
         },
+        lifeTime: {
+            default: 3,
+            type: cc.Float,
+            tooltip: '子弹生存时间（秒）'
+        },
         boundaryX: 480,
         boundaryY: 960
     },
@@ -42,6 +47,14 @@ cc.Class({
         // 启用碰撞检测系统
         let manager = cc.director.getCollisionManager();
         manager.enabled = true;
+
+        // 设置定时销毁
+        this.scheduleOnce(() => {
+            if (this.node && this.node.isValid) {
+                cc.log('子弹到达生存时间上限，自动销毁');
+                this.node.destroy();
+            }
+        }, this.lifeTime);
     },
 
     start () {

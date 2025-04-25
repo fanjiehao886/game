@@ -24,6 +24,14 @@ cc.Class({
 
         // 设置碰撞分组
         this.node.group = 'explosion';
+
+        // 在duration时间后自动销毁爆炸效果
+        this.scheduleOnce(() => {
+            if (this.node && this.node.isValid) {
+                cc.log('爆炸效果到达持续时间，自动销毁');
+                this.node.destroy();
+            }
+        }, this.duration);
     },
 
     onCollisionEnter(other, self) {
@@ -36,14 +44,6 @@ cc.Class({
                 player.takeDamage(this.damage);
                 cc.log('爆炸效果对玩家造成伤害:', this.damage);
             }
-            
-            // 0.5秒后销毁爆炸效果
-            this.scheduleOnce(() => {
-                if (this.node && this.node.isValid) {
-                    cc.log('爆炸效果即将销毁');
-                    this.node.destroy();
-                }
-            }, 0.5);
         }
     },
 

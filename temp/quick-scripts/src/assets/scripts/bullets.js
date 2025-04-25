@@ -22,11 +22,18 @@ cc.Class({
       type: cc.Integer,
       tooltip: '子弹伤害值'
     },
+    lifeTime: {
+      "default": 3,
+      type: cc.Float,
+      tooltip: '子弹生存时间（秒）'
+    },
     boundaryX: 480,
     boundaryY: 960
   },
   // LIFE-CYCLE CALLBACKS:
   onLoad: function onLoad() {
+    var _this = this;
+
     this.srcHeight = cc.view.getCanvasSize().height;
     this.srcWidth = cc.view.getCanvasSize().width; // 添加碰撞体
 
@@ -42,7 +49,15 @@ cc.Class({
     this.node.group = 'bullet'; // 启用碰撞检测系统
 
     var manager = cc.director.getCollisionManager();
-    manager.enabled = true;
+    manager.enabled = true; // 设置定时销毁
+
+    this.scheduleOnce(function () {
+      if (_this.node && _this.node.isValid) {
+        cc.log('子弹到达生存时间上限，自动销毁');
+
+        _this.node.destroy();
+      }
+    }, this.lifeTime);
   },
   start: function start() {},
   setDirection: function setDirection(dir) {
